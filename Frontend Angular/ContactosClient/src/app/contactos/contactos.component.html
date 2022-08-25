@@ -1,0 +1,45 @@
+<div class="row">
+    <div style="display: flex; justify-content:flex-end; margin-right: 10%; margin-bottom: 2%;">
+      <button mat-stroked-button [routerLink]="['/Crear']">Crear Contacto</button>
+    </div>
+  </div>
+  
+  <div style="margin-left: 10%; margin-right: 10%;">
+    <mat-table [dataSource]="contactos" class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="apellido">
+        <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.apellido}} </mat-cell>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="idSend">
+          <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+         <mat-cell *matCellDef="let element"> 
+          <button mat-stroked-button [routerLink]="['/Editar', element.id]">Editar</button>
+          <div style="margin-right: 10px;"></div>
+          <button mat-stroked-button (click)="eliminarContacto(element.id);$event.stopPropagation()" color="warn">Eliminar</button>
+         </mat-cell>
+        </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
